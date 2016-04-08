@@ -1,0 +1,22 @@
+{
+  "name": "es2015-demos",
+  "version": "0.0.0",
+  "authors": [
+    "Alex Key <alexander.key@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "chai": "~3.5.0",
+    "systemjs": "*",
+    "mocha": "~2.4.5",
+    "traceur": "~0.0.104"
+  }
+}
