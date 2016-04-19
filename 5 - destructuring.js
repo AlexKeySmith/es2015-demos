@@ -96,3 +96,19 @@ describe("array destructuring", function() {
   });
 
 });
+
+describe("destructuring function parameters", function() {
+
+  it("can be used to destructure arrays and objects", function() {
+
+      var func = function([a,b], {x : xNew, y : yNew}) {
+          a.should.be.equal(1);
+          b.should.be.equal(2);
+          xNew.should.be.equal(3);
+          yNew.should.be.equal(4);
+      };
+
+      func([1, 2], {x: 3, y: 4});
+  });
+
+});
