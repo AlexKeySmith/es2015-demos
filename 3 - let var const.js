@@ -1,85 +1,63 @@
-"use strict";
-(function() {
+"use strict"
 
-  var doStuffVar = function(flag) {
-    if(flag)
+var should = require('chai').should();
+
+describe("var", function() {
+
+  it("has function scope", function() {
+
+    if(true) {
+      var launchTheNukes = true;
+    }
+
+    should.exist(launchTheNukes);
+  });
+
+  it("can be redeclared", function() {
+    var secretLaunchCode = "sa90239rofakho90asdasdasdy3r";
+    var secretLaunchCode = "password";
+
+    secretLaunchCode.should.equal("password");
+  });
+
+});
+
+describe("let", function() {
+
+  it("has block scope", function() {
+
+    if(true) {
+      let launchTheNukes = true;
+    }
+
+    should.throw(() => { launchTheNukes; });
+  });
+
+  it("cannot be redeclared in the same scope", function() {
+    let secretLaunchCode = "sa90239rofakho90asdasdasdy3r";
+
+    //syntax error here
+    //let secretLaunchCode = "password";
+  });
+
+  it("can be redeclared in another scope, but stays in it's scope", function() {
+    let name = "Alex";
+
     {
-      var x = "hello";
-    }
-    return x; //x *should* be undefined
-  }
-
-
-  var result = doStuffVar(true);
-
-  console.log("result is ", result);
-
-})();
-
-
-
-(function() {
-
-  var doStuffLet = function(flag) {
-    if(flag)
-    {
-      let x = "hello";
+      let name = "Alex's Nemisis"
     }
 
-    try {
-      return x; //x is undefined
-    } catch (e) {
-      console.log("x should be undefined")
-    }
-  }
+    name.should.equal("Alex");
+  });
 
-  var result = doStuffLet(true);
+});
 
-  console.log("result is ", result);
+describe("const", function() {
 
-})();
+  it("can only be set when declared", function() {
 
+    const alexIsAwesome = true;
+    should.throw(() => { alexIsAwesome = false;  })
+  });
 
-(function() {
-
-  var launchEventCode = "TOP_SECRET_LAUNCH_CODE";
-  var lunchEventCode;
-
-  var presisdentSandwichOrder = function(lunchOrder) {
-    launchEventCode = lunchOrder; //Oh crap someone muddled up lunch and launch!
-
-    console.log("Food Order: preparing a " + launchEventCode + " sandwich");
-  }
-
-  var validateLaunchCode = function(userLaunchCode, topSecretLaunchCode) {
-    return userLaunchCode === topSecretLaunchCode;
-  }
-
-  var launchTheNukes = function(userLaunchCode, topSecretLaunchCode) {
-    console.log("..validating launch code");
-    if(validateLaunchCode(userLaunchCode, topSecretLaunchCode)) {
-      console.log("NUKES LAUNCHED");
-    } else {
-      console.log("launch code invalid");
-    }
-  }
-
-  setTimeout(() => presisdentSandwichOrder("marmite"), 800);
-
-  setTimeout(function evilHacker() {
-    launchTheNukes("cheese", launchEventCode);
-  }, 500);
-
-  setTimeout(function evilHacker() {
-    launchTheNukes("jam", launchEventCode);
-  }, 1000);
-
-  setTimeout(function evilHacker() {
-    launchTheNukes("marmite", launchEventCode);
-  }, 2000);
-
-
-
-
-
-})();
+});
