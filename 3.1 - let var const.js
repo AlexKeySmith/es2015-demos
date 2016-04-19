@@ -12,6 +12,14 @@ describe("var", function() {
 
     should.exist(launchTheNukes);
   });
+
+  it("can be redeclared", function() {
+    var secretLaunchCode = "sa90239rofakho90asdasdasdy3r";
+    var secretLaunchCode = "password";
+
+    secretLaunchCode.should.equal("password");
+  });
+
 });
 
 describe("let", function() {
@@ -24,6 +32,24 @@ describe("let", function() {
 
     should.throw(() => { launchTheNukes; });
   });
+
+  it("cannot be redeclared in the same scope", function() {
+    let secretLaunchCode = "sa90239rofakho90asdasdasdy3r";
+
+    //syntax error here
+    //let secretLaunchCode = "password";
+  });
+
+  it("can be redeclared in another scope, but stays in it's scope", function() {
+    let name = "Alex";
+
+    {
+      let name = "Alex's Nemisis"
+    }
+
+    name.should.equal("Alex");
+  });
+
 });
 
 describe("const", function() {
