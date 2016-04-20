@@ -1,12 +1,12 @@
 "use strict";
 
-require("chai").should();
+var should = require("chai").should();
 
 describe("classes", function() {
 
   let sound = "dog";
 
-  class Person { //clases are not hoisted, need declaring before using.
+  class Person { //clases are not hoisted, need declaring before using and they don't get attached to window.Person.
     //let eyeColor //you can't declare variables and no need for ,
 
 
@@ -51,6 +51,25 @@ describe("classes", function() {
 
     }
 
-  })
+    var spiderMan = new Hero();
+
+    spiderMan.should.be.an.instanceof(Person);
+    spiderMan.should.be.an.instanceof(Hero);
+
+  });
+
+  it("must call super if extending and constructing", function() {
+
+    class Villain extends Person {
+      constructor() {
+        //super(); //this would normally call Person.constructor
+      }
+    }
+
+    //bloody confusing error message! Damn you red bear!
+    should.throw(() => { let redBear = new Villain(); }, "this is not defined");
+
+
+  });
 
 });
