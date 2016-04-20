@@ -69,6 +69,23 @@ describe("classes", function() {
     //bloody confusing error message! Damn you red bear!
     should.throw(() => { let redBear = new Villain(); }, "this is not defined");
 
+  });
+
+  it("can have static methods and must not be called on instances", function() {
+
+    class Lunch {
+      static Standard() {
+        return "Burrito size of face";
+      }
+    }
+
+    Lunch.Standard().should.be.equal("Burrito size of face");
+
+    let healthyLunch = new Lunch();
+
+    //note this is not the error message I've seen in tutorials!
+    should.throw(() => { healthyLunch.Standard(); }, "healthyLunch.Standard is not a function" );
+
 
   });
 
