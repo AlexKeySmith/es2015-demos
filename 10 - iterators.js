@@ -2,8 +2,6 @@
 
 require("chai").should();
 
-//mocha --harmony_rest_parameters
-
 describe("iterators", function() {
 
   var iteratorFunction = function() {
