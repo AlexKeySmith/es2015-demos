@@ -3,9 +3,6 @@
 var should = require("chai").should();
 var assert = require('chai').assert;
 
-
-
-
 describe("symbols", function() {
   it("is defined using Symbol() without new", function() {
     const SYMBOL = Symbol();
